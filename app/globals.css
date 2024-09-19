@@ -1,4 +1,4 @@
-@tailwind base;
+@tailwind base; /* Add this line to include the base styles */
 @tailwind components;
 @tailwind utilities;
 
