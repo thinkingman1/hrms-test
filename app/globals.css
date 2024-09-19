@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f0f5ff;
+  --foreground: #1a202c;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a202c;
+    --foreground: #f0f5ff;
   }
 }
 
@@ -23,5 +23,74 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 240 96% 100%;
+    --foreground: 26 16% 17%;
+    --card: 240 96% 100%;
+    --card-foreground: 26 16% 17%;
+    --popover: 240 96% 100%;
+    --popover-foreground: 26 16% 17%;
+    --primary: 210 20% 98%;
+    --primary-foreground: 26 16% 17%;
+    --secondary: 210 20% 98%;
+    --secondary-foreground: 26 16% 17%;
+    --muted: 210 20% 98%;
+    --muted-foreground: 26 16% 17%;
+    --accent: 210 20% 98%;
+    --accent-foreground: 26 16% 17%;
+    --destructive: 210 20% 98%;
+    --destructive-foreground: 26 16% 17%;
+    --border: 210 20% 98%;
+    --input: 210 20% 98%;
+    --ring: 240 96% 100%;
+    --chart-1: 210 20% 98%;
+    --chart-2: 210 20% 98%;
+    --chart-3: 210 20% 98%;
+    --chart-4: 210 20% 98%;
+    --chart-5: 210 20% 98%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 26 16% 17%;
+    --foreground: 240 96% 100%;
+    --card: 26 16% 17%;
+    --card-foreground: 240 96% 100%;
+    --popover: 26 16% 17%;
+    --popover-foreground: 240 96% 100%;
+    --primary: 26 16% 17%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 26 16% 17%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 26 16% 17%;
+    --muted-foreground: 210 20% 98%;
+    --accent: 26 16% 17%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 26 16% 17%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 26 16% 17%;
+    --input: 26 16% 17%;
+    --ring: 26 16% 17%;
+    --chart-1: 26 16% 17%;
+    --chart-2: 26 16% 17%;
+    --chart-3: 26 16% 17%;
+    --chart-4: 26 16% 17%;
+    --chart-5: 26 16% 17%;
+  }
+}
+
+@layer base {
+  * {
+    /* Ensure PostCSS is configured to support @apply */
+    @apply border-border; 
+  }
+  body {
+    @apply bg-background text-foreground; 
+  }
+  .menu-item {
+    @apply hover:bg-gray-200; 
   }
 }
