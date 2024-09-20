@@ -1,9 +1,11 @@
+"use client"; // Mark the component as a Client Component
+
 import { useEffect, useState } from 'react';
 
 const EmployeeDirectory = () => {
     const [employees, setEmployees] = useState([]);
-    const [loading, setLoading] = useState(true); // Add loading state
-    const [error, setError] = useState(null); // Add error state
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchEmployees = async () => {
@@ -13,32 +15,51 @@ const EmployeeDirectory = () => {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log('Fetched data:', data); // Log the fetched data
                 setEmployees(data);
             } catch (error) {
-                console.error('Fetch error:', error);
-                setError(error.message); // Set error message
+                setError(error.message);
             } finally {
-                setLoading(false); // Set loading to false after fetching
+                setLoading(false);
             }
         };
 
         fetchEmployees();
     }, []);
 
-    if (loading) return <p>Loading...</p>; // Show loading state
-    if (error) return <p>Error: {error}</p>; // Show error message
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
         <div>
             <h3 className="text-lg font-semibold">Employee Directory</h3>
-            <ul>
-                {employees.map(employee => (
-                    <li key={employee.employeeid}>
-                        {employee.firstname} {employee.lastname} - {employee.position}
-                    </li>
-                ))}
-            </ul>
+            <table className="min-w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr>
+                        <th className="border border-gray-300 px-4 py-2">Employee ID</th>
+                        <th className="border border-gray-300 px-4 py-2">First Name</th>
+                        <th className="border border-gray-300 px-4 py-2">Last Name</th>
+                        <th className="border border-gray-300 px-4 py-2">Position</th>
+                        <th className="border border-gray-300 px-4 py-2">Email</th>
+                        <th className="border border-gray-300 px-4 py-2">Hire Date</th>
+                        <th className="border border-gray-300 px-4 py-2">Department ID</th>
+                        <th className="border border-gray-300 px-4 py-2">Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {employees.map(employee => (
+                        <tr key={employee.employeeid}>
+                            <td className="border border-gray-300 px-4 py-2">{employee.employeeid}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.firstname}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.lastname}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.position}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.email}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.hiredate}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.departmentid}</td>
+                            <td className="border border-gray-300 px-4 py-2">{employee.phonenumber}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };

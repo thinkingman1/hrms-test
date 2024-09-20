@@ -1,6 +1,6 @@
 import HrmsDashboard from '@/components/hrms-dashboard';
 
-// Use HrmsDashboard in your component
+// Use EmployeeDirectory in your component
 const Page = () => {
   return (
     <div>
