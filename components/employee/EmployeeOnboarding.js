@@ -1,6 +1,6 @@
 "use client"; // Mark the component as a Client Component
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const EmployeeOnboarding = () => {
   const [newEmployee, setNewEmployee] = useState({
