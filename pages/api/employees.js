@@ -1,3 +1,4 @@
+
 import { createClient } from '@vercel/postgres';
 
 export default async function handler(req, res) {
@@ -20,8 +21,25 @@ export default async function handler(req, res) {
             await client.end();
         }
     } else if (req.method === 'GET') {
+        const { search } = req.query; // Get the search term from the query parameters
+
         try {
-            const result = await client.sql`SELECT * FROM Employees`; // Use the sql tagged template
+            let result;
+            if (search) {
+                // If search term exists, filter results
+                result = await client.sql`
+                    SELECT * FROM Employees
+                    WHERE 
+                        EmployeeID::text ILIKE ${`%${search}%`} OR
+                        FirstName ILIKE ${`%${search}%`} OR
+                        LastName ILIKE ${`%${search}%`}
+                `;
+            } else {
+                // If no search term, return all employees
+                result = await client.sql`
+                    SELECT * FROM Employees
+                `;
+            }
             res.status(200).json(result.rows);
         } catch (error) {
             console.error(error); // Log the error for debugging
@@ -29,8 +47,20 @@ export default async function handler(req, res) {
         } finally {
             await client.end();
         }
+    } else if (req.method === 'DELETE') {
+        const { id } = req.query; // Get the employee ID from the query parameters
+
+        try {
+            await client.sql`DELETE FROM Employees WHERE EmployeeID = ${id}`; // Delete the employee by ID
+            res.status(204).end(); // No content to send back
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Failed to delete employee' });
+        } finally {
+            await client.end();
+        }
     } else {
-        res.setHeader('Allow', ['GET', 'POST']);
+        res.setHeader('Allow', ['GET', 'POST', 'DELETE']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }

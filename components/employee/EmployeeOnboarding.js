@@ -122,10 +122,11 @@ const EmployeeOnboarding = () => {
         <div className="flex flex-col">
           <label htmlFor="hiredate" className="mb-1">Hire Date:</label>
           <input 
-            type="date" 
+            type="text" 
             id="hiredate" 
             name="hiredate" 
-            value={newEmployee.hiredate} 
+            value={newEmployee.hiredate ? 
+              new Date(newEmployee.hiredate).toLocaleDateString('en-GB') : ''} 
             onChange={handleChange} 
             required 
             className="p-2 border rounded"
