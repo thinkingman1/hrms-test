@@ -10,6 +10,12 @@ import LeaveApply from './leave/LeaveApply'
 import LeaveApprovalStatus from './leave/LeaveApprovalStatus'
 import LeaveTrack from './leave/LeaveTrack'
 
+const MenuItem = ({ label, isActive }: { label: string; isActive: boolean }) => (
+  <div className={`menu-item ${isActive ? 'menu-item-active' : ''}`}>
+    {label}
+  </div>
+);
+
 const menuItems = [
   { icon: HomeIcon, label: 'Dashboard', link: 'dashboard' },
   {
@@ -88,11 +94,9 @@ const EmployeeSubPage = ({ subPage }: { subPage: string }) => {
       content = <EmployeeDirectory />;
       break;
     case 'Onboarding':
-      content = <div>Onboarding Page Content</div>; // Placeholder for Onboarding
       content = <EmployeeOnboarding />;
       break;
     case 'Offboarding':
-      content = <div>Offboarding Page Content</div>; // Placeholder for Offboarding
       content = <EmployeeOffboarding />;
       break;
     default:
@@ -113,17 +117,17 @@ const EmployeePage = ({ subPage }: { subPage: string }) => (
   <EmployeeSubPage subPage={subPage} />
 )
 
-const LeaveManagementPage = ({ subPage }: { subPage: string }) => {
+const LeaveManagementSubPage = ({ subPage }: { subPage: string }) => {
   let content;
 
   switch (subPage) {
-    case 'LeaveApply':
+    case 'Apply Leave':
       content = <LeaveApply />;
       break;
-    case 'LeaveApprovalStatus':
+    case 'Approval':
       content = <LeaveApprovalStatus />;
       break;
-    case 'LeaveTrack':
+    case 'Leave Tracker':
       content = <LeaveTrack />;
       break;
     default:
@@ -139,6 +143,11 @@ const LeaveManagementPage = ({ subPage }: { subPage: string }) => {
     </div>
   )
 }
+
+const LeaveManagementPage = ({ subPage }: { subPage: string }) => (
+  <LeaveManagementSubPage subPage={subPage} />
+)
+
 
 const PayrollPage = ({ subPage }: { subPage: string }) => (
   <div className="space-y-6">
@@ -212,7 +221,7 @@ const SettingsPage = () => {
     },
     {
       title: 'Marketplace',
-      items: ['Zoho', 'Others']
+      items: ['Astranova Labs', 'Others']
     },
     {
       title: 'Data Administration',
@@ -220,7 +229,7 @@ const SettingsPage = () => {
     },
     {
       title: 'Developer Space',
-      items: ['Web forms', 'Zoho People API', 'Connections']
+      items: ['Web forms', 'Astranova Labs People API', 'Connections']
     }
   ]
 
@@ -365,7 +374,7 @@ export default function HrmsDashboard() {
     <div className="flex h-screen bg-background text-foreground">
       {/* Sidebar */}
       <aside className="w-64 bg-primary text-primary-foreground p-4">
-        <div className="text-2xl font-bold mb-8">HRMS Dashboard</div>
+        <div className="text-2xl font-bold mb-8">Astra HRMS </div>
         <nav>
           <ul className="space-y-2">
             {menuItems.map((item) => (
@@ -380,10 +389,7 @@ export default function HrmsDashboard() {
                     }
                   }}
                 >
-                  <div className="flex items-center">
-                    <item.icon className="mr-2 h-5 w-5" />
-                    <span>{item.label}</span>
-                  </div>
+                  <MenuItem label={item.label} isActive={activeMenu === item.label} />
                   {item.subItems && (
                     <ChevronDownIcon
                       className={`h-4 w-4 transition-transform ${

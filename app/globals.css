@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #f0f5ff;
-  --foreground: #1a202c;
+  --background: #bcb688;
+  --foreground: #6788cb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a202c;
-    --foreground: #f0f5ff;
+    --background: #254686;
+    --foreground: #fff0fc;
   }
 }
 
@@ -23,6 +23,9 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .menu-item-active {
+    @apply bg-primary;  /* Assuming 'primary' is a lighter color */
   }
 }
 
@@ -91,6 +94,6 @@ body {
     @apply bg-background text-foreground; 
   }
   .menu-item {
-    @apply hover:bg-gray-200; 
+    @apply hover:bg-gray-100; 
   }
 }
