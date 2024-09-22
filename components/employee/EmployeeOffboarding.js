@@ -35,7 +35,7 @@ const EmployeeOffboarding = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-4xl mx-auto mt-10">
       <h3 className="text-lg font-semibold">Employee Offboarding</h3>
       <div className="flex flex-col">
         <label htmlFor="search" className="mb-1">Search (ID, First Name, Last Name):</label>
@@ -47,7 +47,7 @@ const EmployeeOffboarding = () => {
           required 
           className="p-2 border rounded"
         />
-        <button onClick={fetchEmployeeDetails} className="mt-2 p-2 bg-green-500 text-white rounded">Submit</button>
+        <button onClick={fetchEmployeeDetails} className="mt-2 p-2 bg-blue-500 text-white rounded">Submit</button>
         
         {employeeDetails && (
           <div className="mt-4">

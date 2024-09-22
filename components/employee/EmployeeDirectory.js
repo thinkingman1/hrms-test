@@ -34,7 +34,7 @@ const EmployeeDirectory = () => {
             <h3 className="text-lg font-semibold">Employee Directory</h3>
             <table className="min-w-full border-collapse border border-gray-300">
                 <thead>
-                    <tr>
+                    <tr className="bg-gray-200">
                         <th className="border border-gray-300 px-4 py-2">Employee ID</th>
                         <th className="border border-gray-300 px-4 py-2">First Name</th>
                         <th className="border border-gray-300 px-4 py-2">Last Name</th>

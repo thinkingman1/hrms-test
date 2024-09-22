@@ -439,7 +439,7 @@ export default function HrmsDashboard() {
       {/* Main content */}
       <main className="flex-1 p-8 overflow-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Welcome, John Doe</h1>
+          <h1 className="text-3xl font-bold">Welcome, Sandeep Padam</h1>
           <div className="flex items-center space-x-4">
             <button className="p-2 bg-secondary text-secondary-foreground rounded-full shadow-md hover:bg-secondary/90 transition-colors">
               <BellIcon className="h-6 w-6" />

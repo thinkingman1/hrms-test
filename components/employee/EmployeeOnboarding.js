@@ -9,7 +9,7 @@ const EmployeeOnboarding = () => {
     lastname: '',
     position: '',
     email: '',
-    hiredate: '',
+    hiredate: null, // Changed to null to accommodate date picker
     departmentid: '',
     phonenumber: ''
   });
@@ -17,7 +17,11 @@ const EmployeeOnboarding = () => {
   const [submitMessage, setSubmitMessage] = useState(null);
 
   const handleChange = (event) => {
-    setNewEmployee({ ...newEmployee, [event.target.name]: event.target.value });
+    if (event.target.name === 'hiredate') {
+      setNewEmployee({ ...newEmployee, [event.target.name]: event.target.value });
+    } else {
+      setNewEmployee({ ...newEmployee, [event.target.name]: event.target.value });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -42,7 +46,7 @@ const EmployeeOnboarding = () => {
           lastname: '',
           position: '',
           email: '',
-          hiredate: '',
+          hiredate: null, // Reset to null after submission
           departmentid: '',
           phonenumber: ''
         });
@@ -56,11 +60,11 @@ const EmployeeOnboarding = () => {
 
   return (
     <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-      <h3 className="text-lg font-semibold mb-4">Onboard New Employee</h3>
+      <h3 className="text-lg font-semibold mb-4 text-center">Onboard New Employee</h3>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col">
-          <label htmlFor="employeeid" className="mb-1">Employee ID:</label>
+          <label htmlFor="employeeid" className="mb-1 bg-gray-200 p-2 font-bold text-center">Employee ID:</label>
           <input 
             type="text" 
             id="employeeid" 
@@ -72,7 +76,7 @@ const EmployeeOnboarding = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="firstname" className="mb-1">First Name:</label>
+          <label htmlFor="firstname" className="mb-1 bg-gray-200 p-2 font-bold text-center">First Name:</label>
           <input 
             type="text" 
             id="firstname" 
@@ -84,7 +88,7 @@ const EmployeeOnboarding = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="lastname" className="mb-1">Last Name:</label>
+          <label htmlFor="lastname" className="mb-1 bg-gray-200 p-2 font-bold text-center">Last Name:</label>
           <input 
             type="text" 
             id="lastname" 
@@ -96,7 +100,7 @@ const EmployeeOnboarding = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="position" className="mb-1">Position:</label>
+          <label htmlFor="position" className="mb-1 bg-gray-200 p-2 font-bold text-center">Position:</label>
           <input 
             type="text" 
             id="position" 
@@ -108,7 +112,7 @@ const EmployeeOnboarding = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="email" className="mb-1">Email:</label>
+          <label htmlFor="email" className="mb-1 bg-gray-200 p-2 font-bold text-center">Email:</label>
           <input 
             type="email" 
             id="email" 
@@ -120,20 +124,19 @@ const EmployeeOnboarding = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="hiredate" className="mb-1">Hire Date:</label>
+          <label htmlFor="hiredate" className="mb-1 bg-gray-200 p-2 font-bold text-center">Hire Date:</label>
           <input 
-            type="text" 
+            type="date" 
             id="hiredate" 
             name="hiredate" 
-            value={newEmployee.hiredate ? 
-              new Date(newEmployee.hiredate).toLocaleDateString('en-GB') : ''} 
+            value={newEmployee.hiredate} 
             onChange={handleChange} 
             required 
             className="p-2 border rounded"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="departmentid" className="mb-1">Department ID:</label>
+          <label htmlFor="departmentid" className="mb-1 bg-gray-200 p-2 font-bold text-center">Department ID:</label>
           <input 
             type="text" 
             id="departmentid" 
@@ -145,7 +148,7 @@ const EmployeeOnboarding = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="phonenumber" className="mb-1">Phone Number:</label>
+          <label htmlFor="phonenumber" className="mb-1 bg-gray-200 p-2 font-bold text-center">Phone Number:</label>
           <input 
             type="tel" 
             id="phonenumber" 

@@ -44,29 +44,37 @@ export default function ApplyLeave() {
     };
 
     return (
-        <div>
-            <h1>Apply for Leave</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="leave_type_id">Leave Type:</label>
-                <select name="leave_type_id" value={leaveData.leave_type_id} onChange={handleChange} required>
-                    <option value="">Select Leave Type</option>
-                    <option value="1">Casual Leave</option>
-                    <option value="2">Sick Leave</option>
-                    <option value="3">Earned Leave</option>
-                </select>
-
-                <label htmlFor="start_date">Start Date:</label>
-                <input type="date" name="start_date" value={leaveData.start_date} onChange={handleChange} required />
-
-                <label htmlFor="end_date">End Date:</label>
-                <input type="date" name="end_date" value={leaveData.end_date} onChange={handleChange} required />
-
-                <label htmlFor="reason">Reason:</label>
-                <textarea name="reason" value={leaveData.reason} onChange={handleChange} required></textarea>
-
-                <button type="submit" style={{ backgroundColor: 'blue', color: 'white', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>Submit</button>
-            </form>
-            {message && <p style={{ color: messageType === 'success' ? 'green' : 'red' }}>{message}</p>}
-        </div>
-    );
+      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md"> {/* Updated container */}
+          <h3 className="text-lg font-semibold mb-4 text-center">Apply for Leave</h3> {/* Updated title */}
+          <form onSubmit={handleSubmit} className="space-y-4"> {/* Updated form structure */}
+              <div className="flex flex-col">
+                  <label htmlFor="leave_type_id" className="mb-1 bg-gray-200 p-2 font-bold text-center">Leave Type:</label>
+                  <select name="leave_type_id" value={leaveData.leave_type_id} onChange={handleChange} required className="p-2 border rounded"> {/* Updated select */}
+                      <option value="">Select Leave Type</option>
+                      <option value="1">Casual Leave</option>
+                      <option value="2">Sick Leave</option>
+                      <option value="3">Earned Leave</option>
+                  </select>
+              </div>
+  
+              <div className="flex flex-col">
+                  <label htmlFor="start_date" className="mb-1 bg-gray-200 p-2 font-bold text-center">Start Date:</label>
+                  <input type="date" name="start_date" value={leaveData.start_date} onChange={handleChange} required className="p-2 border rounded" /> {/* Updated input */}
+              </div>
+  
+              <div className="flex flex-col">
+                  <label htmlFor="end_date" className="mb-1 bg-gray-200 p-2 font-bold text-center">End Date:</label>
+                  <input type="date" name="end_date" value={leaveData.end_date} onChange={handleChange} required className="p-2 border rounded" /> {/* Updated input */}
+              </div>
+  
+              <div className="flex flex-col">
+                  <label htmlFor="reason" className="mb-1 bg-gray-200 p-2 font-bold text-center">Reason:</label>
+                  <textarea name="reason" value={leaveData.reason} onChange={handleChange} required className="p-2 border rounded"></textarea> {/* Updated textarea */}
+              </div>
+  
+              <button type="submit" className="w-full py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition duration-200">Submit</button> {/* Updated button */}
+          </form>
+          {message && <p style={{ color: messageType === 'success' ? 'green' : 'red', marginTop: '20px' }}>{message}</p>} {/* Message display */}
+      </div>
+  );
 }
